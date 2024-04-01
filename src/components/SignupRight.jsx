@@ -7,14 +7,51 @@ import typeformLogoText from "../assets/typeformLogoText.svg";
 import ErrorLabel from "./ErrorLabel";
 import Eye from "../assets/eye.svg";
 import EyeHide from "../assets/eyeHide.svg";
-const SignupRight = () => {
-  const [error, setError] = useState(null);
 
+const validateEmail = email => {
+  return String(email)
+    .toLowerCase()
+    .match(
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+};
+const SignupRight = () => {
+  const [emailError, setEmailError] = useState(null);
+  const [passwordError, setPasswordError] = useState(null);
+  const [checkError, setCheckError] = useState(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+  const [isPasswordHidden, setIsPasswordHidden] = useState(true);
   const [isAgreementChecked, setIsAgreementChecked] = useState(false);
   const [seeOptions, setSeeOptions] = useState(false);
+
+  const submitForm = e => {
+    e.preventDefault();
+    if (!email) {
+      setEmailError("This field cannot be left blank");
+    }
+    if (!password) {
+      setPasswordError("This field cannot be left blank");
+    }
+    if (password.length < 8) {
+      setPasswordError(
+        "Use 8 or more characters with a mix of letters, numbers and symbols"
+      );
+    }
+    if (validateEmail(email) === null) {
+      setEmailError("Enter a valid email address");
+    }
+    if (!isAgreementChecked) {
+      setCheckError(
+        "Please accept the terms and conditions to finish the signup"
+      );
+    } else {
+      setEmailError(null);
+      setPasswordError(null);
+      setCheckError(null);
+    }
+  };
   return (
     <section className='lg:-ml-4 rounded-[16px_0px_0px_16px] p-0 flex-[1_1_10%] grid  h-full relative min-h-[90vh] overflow-hidden w-full bg-transparent'>
       <div className='bg-white w-full relative gridContainer '>
@@ -114,7 +151,7 @@ const SignupRight = () => {
           <div className='w-full md:max-w-[256px]'>
             <main className='block'>
               <div>
-                <form className='block mt-0'>
+                <form onSubmit={submitForm} className='block mt-0'>
                   <div className='mb-[15px]'>
                     <div className='mb-[15px]'>
                       <h2 className='hidden mr-0 mt-0 ml-0 mb-5 font-normal'>
@@ -125,6 +162,8 @@ const SignupRight = () => {
                         <span className='w-full h-10 inline-block border border-solid border-[rgb(194,194,193)] rounded-[3px]'>
                           <input
                             type='text'
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
                             placeholder='Email'
                             autoComplete='off'
                             id='email'
@@ -132,12 +171,14 @@ const SignupRight = () => {
                             className='h-full w-full m-0 py-[6px] px-2 rounded-[3px] text-base leading-4 border-none'
                           />
                         </span>
-                        {!error && <ErrorLabel />}
+                        {emailError && <ErrorLabel error={emailError} />}
                       </div>
                       <div className='mb-[15px]'>
                         <span className='w-full relative h-10 inline-block border border-solid border-[rgb(194,194,193)] rounded-[3px]'>
                           <input
-                            type={!isPasswordVisible ? "text" : "password"}
+                            value={password}
+                            onChange={e => setPassword(e.target.value)}
+                            type={!isPasswordHidden ? "text" : "password"}
                             minLength={10}
                             maxLength={72}
                             placeholder='Password'
@@ -149,19 +190,19 @@ const SignupRight = () => {
                           <button
                             onClick={e => {
                               e.preventDefault();
-                              setIsPasswordVisible(!isPasswordVisible);
+                              setIsPasswordHidden(!isPasswordHidden);
                             }}
                             className='bg-none border-none'
                           >
                             <span className='absolute right-[5px] top-[58%] -translate-y-1/2 w-8 h-8 py-[6px] px-2 opacity-[0.175] cursor-pointer select-none'>
                               <img
-                                src={isPasswordVisible ? Eye : EyeHide}
+                                src={isPasswordHidden ? Eye : EyeHide}
                                 alt='eye'
                               />
                             </span>
                           </button>
                         </span>
-                        {!error && <ErrorLabel />}
+                        {passwordError && <ErrorLabel error={passwordError} />}
                       </div>
                     </div>
                   </div>
@@ -177,12 +218,14 @@ const SignupRight = () => {
                         type='checkbox'
                         id='terms'
                         aria-label='terms'
-                        checked={true}
-                        onChange={() =>
-                          setIsAgreementChecked(!isAgreementChecked)
-                        }
-                        className='absolute top-0 left-0 w-5 h-5 m-0 appearance-none shadow-[rgb(207,207,206)_0px_0px_0px_1px_inset] rounded-[3px] transition-all'
-                      />
+                        checked={isAgreementChecked}
+                        onChange={() => {
+                          setIsAgreementChecked(!isAgreementChecked);
+                        }}
+                        //  appearance-none
+                        //  content-[""] text-white w-5 h-5 absolute z-[100] left-0 top-0;
+                        className='absolute top-0 left-0 w-5 h-5 m-0    shadow-[rgb(207,207,206)_0px_0px_0px_1px_inset] rounded-[3px] transition-all focus:border-raisin focus:ring-2 focus:ring-black  focus:bg-black accent-black  checked:bg-black    '
+                      ></input>
                       {"I agree to Typeform’s "}
                       <a
                         className='underline text-[rgb(25,25,25)] m-0 p-0'
@@ -206,9 +249,9 @@ const SignupRight = () => {
                       </a>
                       .
                     </label>
-                    {!isAgreementChecked && (
+                    {!isAgreementChecked && checkError && (
                       <div className='block'>
-                        <ErrorLabel />
+                        <ErrorLabel error={checkError} />
                       </div>
                     )}
 

@@ -11,7 +11,7 @@ const ErrorLabel = ({ error }) => {
         />
       </span>
       <p className='text-[rgb(193,59,47)] text-sm leading-[1.5] m-0 pt-2 pr-0 pb-[6px] pl-[20px] relative -top-1'>
-        This field cannot be left blank{error}
+        {error}
       </p>
     </div>
   );

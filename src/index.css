@@ -8,14 +8,32 @@ body {
   font-family: "Apercu Pro", sans-serif;
 }
 /* apercu-pro, -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif */
-@layer components {
-}
+/* @layer components {
+  .checboxTick::before {
+    @apply content-[""] text-white w-5 h-5 absolute z-[100] left-0 top-0;
+    background: url(https://www.typeform.com/static/signup-page/check-white.svg)
+      50% 4px no-repeat;
+  }
+} */
 
 .gridContainer {
   display: grid;
   /* changed 0 to auto */
   grid-template-columns: [first] 0 [ second] auto;
   grid-template-rows: [ first] 52px [ second] auto [ third] 52px;
+}
+
+.checboxTick::before {
+  content: "";
+  color: rgb(255, 255, 255);
+  background: url(https://www.typeform.com/static/signup-page/check-white.svg)
+    50% 4px no-repeat;
+  left: 0px;
+  top: 0px;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  z-index: 100;
 }
 
 .gridContainer__Head {
