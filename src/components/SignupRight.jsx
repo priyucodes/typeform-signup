@@ -53,9 +53,13 @@ const SignupRight = () => {
               </a>
             </div>
 
-            <button className='bg-none border-none p-0 cursor-pointer '>
+            <button className='bg-none border-none p-0 cursor-pointer flex w-24 items-center'>
               <div className='mr-2 leading-[0]'>
-                <img src={languageIcon} alt='languageIcon' />
+                <img
+                  src={languageIcon}
+                  className='h-full w-full'
+                  alt='languageIcon'
+                />
               </div>
               <span className='!text-[#5e5e5e] text-sm leading-[1.5] font-normal'>
                 English
