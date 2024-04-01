@@ -23,17 +23,17 @@ const SignupRight = () => {
           <div className='leading-[0] relative'>
             <div
               role='menu'
-              className='bg-white rounded-lg shadow-[rgba(25,25,25,0.12)_0px_2px_5px_0.5px] py-2 px-0 absolute z-[1] pointer-events-none scale-[0.85] origin-[left_bottom] will-change-[transform,opacity] invisible opacity-0 top-[2rem] anim'
+              className='bg-white rounded-lg shadow-[rgba(25,25,25,0.12)_0px_2px_5px_0.5px] py-2 px-0 absolute z-[1] pointer-events-none scale-[0.85] origin-[left_bottom] will-change-[transform,opacity] invisible opacity-0  top-[2rem] anim'
             >
               <a
                 href='/signup/'
                 role='menuitem'
                 data-testid='language-item'
-                className='sc-a9e82213-0 sc-a9e82213-5 ikAZaU cBqXF'
+                className='outline-none  appearance-none max-w-full text-left text-inherit cursor-pointer min-h-[32px] bg-[rgb(240,240,240)] no-underline w-full m-0 border-[none]'
               >
                 <span
                   href='/signup/'
-                  className='text-sm leading-[1.5] text-[#5e5e5e] font-normal'
+                  className='text-base leading-[2.4] text-[rgb(25,25,25)] font-[200] py-[6px] px-[23px]'
                 >
                   English
                 </span>
@@ -42,22 +42,22 @@ const SignupRight = () => {
                 href='/es/signup/'
                 role='menuitem'
                 data-testid='language-item'
-                className='sc-a9e82213-0 sc-a9e82213-5 ikAZaU gWxfeL'
+                className=' appearance-none max-w-full text-left text-inherit cursor-pointer min-h-[32px] bg-[rgb(240,240,240)] no-underline w-full m-0 border-[none]'
               >
                 <span
                   href='/es/signup/'
-                  className='sc-a9e82213-1 sc-a9e82213-6 daWfLx bcYHMS'
+                  className='text-base leading-[2.4] text-[rgb(25,25,25)] font-[200] py-[6px] px-[23px]'
                 >
                   Español
                 </span>
               </a>
             </div>
 
-            <button className='bg-none border-none p-0 cursor-pointer flex items-center '>
+            <button className='bg-none border-none p-0 cursor-pointer '>
               <div className='mr-2 leading-[0]'>
                 <img src={languageIcon} alt='languageIcon' />
               </div>
-              <span className='text-[#5e5e5e] text-sm leading-[1.5] font-normal'>
+              <span className='!text-[#5e5e5e] text-sm leading-[1.5] font-normal'>
                 English
               </span>
               <div className='leading-[0] ml-1'>
@@ -68,7 +68,7 @@ const SignupRight = () => {
         </div>
 
         {/* actual header */}
-        <div className='flex items-center align-middle text-[#3d3d3c] col-[second] justify-end py-2 px-6'>
+        <div className='flex items-center align-middle text-[#3d3d3c] col-[second]  justify-end py-2 px-6'>
           <p className='text-[14px] mt-0 mb-0 ml-0 mr-2'>
             Already have an account?
           </p>

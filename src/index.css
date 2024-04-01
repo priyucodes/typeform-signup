@@ -13,17 +13,18 @@ body {
 
 .gridContainer {
   display: grid;
-  grid-template-columns: [ first] 0px [ second] auto;
+  /* changed 0 to auto */
+  grid-template-columns: [first] 0 [ second] auto;
   grid-template-rows: [ first] 52px [ second] auto [ third] 52px;
 }
 
 .gridContainer__Head {
-  grid-row: first;
-  grid-area: third/first;
-  /* grid-row-start: third;
-  grid-row-end: third;
+  /* grid-row: first; */
+  /* grid-area: third/first; */
+  grid-row-start: first;
+  grid-row-end: first;
   grid-column-start: first;
-  grid-column-end: first; */
+  grid-column-end: second;
 }
 
 .anim {

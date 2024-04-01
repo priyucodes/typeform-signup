@@ -27,7 +27,7 @@ const SignupLeft = () => {
               fetchpriority='low'
               role='presentation'
               src='https://www.typeform.com/static/images/signup-page/product-sample@3x.webp'
-              className='w-full overflow-clip xl3:max-w-[432px]'
+              className='w-full overflow-clip max-w-[366px] xl3:max-w-[432px]'
             ></img>
           </picture>
         </div>
