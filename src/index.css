@@ -1,13 +1,32 @@
+@import url("https://fonts.cdnfonts.com/css/apercu-pro");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* font-family: "apercu-pro", sans-serif; */
+  font-family: "Apercu Pro", sans-serif;
+}
+/* apercu-pro, -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif */
+@layer components {
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.gridContainer {
+  display: grid;
+  grid-template-columns: [ first] 0px [ second] auto;
+  grid-template-rows: [ first] 52px [ second] auto [ third] 52px;
+}
+
+.gridContainer__Head {
+  grid-row: first;
+  grid-area: third/first;
+  /* grid-row-start: third;
+  grid-row-end: third;
+  grid-column-start: first;
+  grid-column-end: first; */
+}
+
+.anim {
+  transition: transform 150ms ease-in 0s, opacity 150ms ease-in 0s,
+    visibility 150ms ease-in 0s;
 }
