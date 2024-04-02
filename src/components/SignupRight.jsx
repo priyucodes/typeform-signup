@@ -59,7 +59,7 @@ const SignupRight = () => {
     <section className='lg:-ml-4 rounded-[16px_0px_0px_16px] p-0 flex-[1_1_10%] grid  h-full relative min-h-[90vh] overflow-hidden w-full bg-transparent'>
       <div className='bg-white w-full relative gridContainer '>
         {/* This is the hidden dropdown */}
-        <div className='gridContainer__Head pt-4  pr-0 pb-0 pl-6'>
+        <div className='gridContainer__Head xsMax:row-start-[third] xsMax:row-end-[third] pt-4  pr-0 pb-0 pl-6'>
           <div className='leading-[0] relative'>
             <div
               role='menu'
