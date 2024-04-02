@@ -15,6 +15,8 @@ const validateEmail = email => {
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     );
 };
+
+const languages = ["English", "Español"];
 const SignupRight = () => {
   const [emailError, setEmailError] = useState(null);
   const [passwordError, setPasswordError] = useState(null);
@@ -25,7 +27,8 @@ const SignupRight = () => {
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
   const [isAgreementChecked, setIsAgreementChecked] = useState(false);
   const [seeOptions, setSeeOptions] = useState(false);
-
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [language, setLanguage] = useState(languages[0]);
   const submitForm = e => {
     e.preventDefault();
     if (!email) {
@@ -60,23 +63,45 @@ const SignupRight = () => {
           <div className='leading-[0] relative'>
             <div
               role='menu'
-              className='bg-white rounded-lg shadow-[rgba(25,25,25,0.12)_0px_2px_5px_0.5px] py-2 px-0 absolute z-[1] pointer-events-none scale-[0.85] origin-[left_bottom] will-change-[transform,opacity] invisible opacity-0  top-[2rem] anim'
+              className={`bg-white rounded-lg shadow-[rgba(25,25,25,0.12)_0px_2px_5px_0.5px] py-2 px-0 absolute z-[1]  scale-[0.85] origin-[left_bottom] will-change-[transform,opacity] flex flex-col  top-[2rem] anim ${
+                showDropdown
+                  ? "visible opacity-100 scale-100 pointer-events-auto"
+                  : "invisible opacity-0 pointer-events-none"
+              }`}
             >
-              <a
-                href='/signup/'
-                role='menuitem'
-                data-testid='language-item'
-                className='outline-none  appearance-none max-w-full text-left text-inherit cursor-pointer min-h-[32px] bg-[rgb(240,240,240)] no-underline w-full m-0 border-[none]'
-              >
-                <span
-                  href='/signup/'
-                  className='text-base leading-[2.4] text-[rgb(25,25,25)] font-[200] py-[6px] px-[23px]'
-                >
-                  English
-                </span>
-              </a>
-              <a
-                href='/es/signup/'
+              {languages.map((lang, index) => {
+                return (
+                  <div className='' key={index * Math.random()}>
+                    <a
+                      onClick={e => {
+                        e.preventDefault();
+
+                        setLanguage(languages[index]);
+                        setShowDropdown(!showDropdown);
+                      }}
+                      href='/signup/'
+                      role='menuitem'
+                      data-testid='language-item'
+                      className={`outline-none  appearance-none max-w-full text-left text-inherit cursor-pointer min-h-[32px] no-underline w-full m-0 border-[none] flex z-50 ${
+                        language === lang ? "bg-[rgb(240,240,240)]" : "bg-white"
+                      } `}
+                    >
+                      <span
+                        href='##'
+                        className='text-base leading-[2.4] text-[rgb(25,25,25)] font-[200] py-[6px] px-[23px]'
+                      >
+                        {lang}
+                      </span>
+                    </a>
+                  </div>
+                );
+              })}
+
+              {/* <a
+                href='##'
+                onClick={() => {
+                  setLanguage(languages[1]);
+                }}
                 role='menuitem'
                 data-testid='language-item'
                 className=' appearance-none max-w-full text-left text-inherit cursor-pointer min-h-[32px] bg-[rgb(240,240,240)] no-underline w-full m-0 border-[none]'
@@ -87,10 +112,15 @@ const SignupRight = () => {
                 >
                   Español
                 </span>
-              </a>
+              </a> */}
             </div>
 
-            <button className='bg-none border-none p-0 cursor-pointer flex w-24 items-center'>
+            <button
+              onClick={() => {
+                setShowDropdown(!showDropdown);
+              }}
+              className='bg-none border-none p-0 cursor-pointer flex w-24 items-center'
+            >
               <div className='mr-2 leading-[0]'>
                 <img
                   src={languageIcon}
@@ -99,7 +129,7 @@ const SignupRight = () => {
                 />
               </div>
               <span className='!text-[#5e5e5e] text-sm leading-[1.5] font-normal'>
-                English
+                {language}
               </span>
               <div className='leading-[0] ml-1'>
                 <img src={chevronDown} alt='chevronDown' />
