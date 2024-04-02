@@ -8,6 +8,7 @@ import ErrorLabel from "./ErrorLabel";
 import Eye from "../assets/eye.svg";
 import EyeHide from "../assets/eyeHide.svg";
 
+import RadioButton from "./ui/RadioButton";
 const validateEmail = email => {
   return String(email)
     .toLowerCase()
@@ -17,6 +18,12 @@ const validateEmail = email => {
 };
 
 const languages = ["English", "Español"];
+
+const Options = {
+  marketing: {
+    text: "Get useful tips, inspiration, and offers via e-communication.",
+  },
+};
 const SignupRight = () => {
   const [emailError, setEmailError] = useState(null);
   const [passwordError, setPasswordError] = useState(null);
@@ -255,7 +262,7 @@ const SignupRight = () => {
                         }}
                         //  appearance-none
                         //  content-[""] text-white w-5 h-5 absolute z-[100] left-0 top-0;
-                        className='absolute top-0 left-0 w-5 h-5 m-0    shadow-[rgb(207,207,206)_0px_0px_0px_1px_inset] rounded-[3px] transition-all focus:border-raisin focus:ring-2 focus:ring-black  focus:bg-black accent-black  checked:bg-black    '
+                        className='absolute top-0 left-0 w-5 h-5 m-0    shadow-[rgb(207,207,206)_0px_0px_0px_1px_inset] rounded-[3px] transition-all focus:border-raisin focus:ring-2 focus:ring-black  focus:bg-black accent-black  checked:bg-[#191919]    '
                       ></input>
                       {"I agree to Typeform’s "}
                       <a
@@ -305,19 +312,141 @@ const SignupRight = () => {
                         </span>
                       </div>
 
-                      {/* Optiosn */}
+                      {/* OptionS */}
+
                       {showOptions && (
-                        <div className='max-h-[306px] hidden transition-[max-height] duration-200 delay-0'>
+                        <div
+                          className={`max-h-[306px]  transition-[max-height] duration-200 delay-0 ${
+                            !showOptions ? "hidden" : "inline-block"
+                          }`}
+                        >
                           <div className='overflow-auto'>
                             {/* Toggle Items */}
+
                             <div>
                               <div className='text-sm mb-2'>
                                 <label
+                                  className='text-[rgb(25,25,25)] leading-[20px] m-0'
                                   id='marketting'
                                   htmlFor='marketting'
-                                ></label>
+                                >
+                                  Get useful tips, inspiration, and offers via
+                                  e-communication.
+                                </label>
+                              </div>
+
+                              {/* Radio container */}
+                              <div className='flex items-center mt-0 mb-3 mr-0 ml-0'>
+                                {/* label insdie a empty div */}
+                                <label className='inline-flex cursor-pointer items-center'>
+                                  <RadioButton id='marketting' />
+                                  <div className='ml-3'>
+                                    <p className='text-sm pt-[2px] mt-0 mr-4 mb-0 ml-0'>
+                                      Yes
+                                    </p>
+                                  </div>
+                                </label>
+                                <label className='inline-flex cursor-pointer items-center'>
+                                  <RadioButton id='marketting' />
+                                  <div className='ml-3'>
+                                    <p className='text-sm pt-[2px] mt-0 mr-4 mb-0 ml-0'>
+                                      No
+                                    </p>
+                                  </div>
+                                </label>
                               </div>
                             </div>
+
+                            <div>
+                              <div className='text-sm mb-2'>
+                                <label
+                                  className='text-[rgb(25,25,25)] leading-[20px] m-0'
+                                  id='marketting'
+                                  htmlFor='marketting'
+                                >
+                                  Tailor Typeform to my needs based on my
+                                  activity.
+                                </label>
+                                <a
+                                  id='tailor_to_needs_agreed'
+                                  href='/privacy-policy/'
+                                  target='_blank'
+                                  rel='noopener'
+                                  class='bg-white no-underline text-[rgb(94,94,94)]'
+                                >
+                                  {" "}
+                                  See Privacy Policy
+                                </a>
+                              </div>
+
+                              {/* Radio container */}
+                              <div className='flex items-center mt-0 mb-3 mr-0 ml-0'>
+                                {/* label insdie a empty div */}
+                                <label className='inline-flex cursor-pointer items-center'>
+                                  <RadioButton id='second' />
+                                  <div className='ml-3'>
+                                    <p className='text-sm pt-[2px] mt-0 mr-4 mb-0 ml-0'>
+                                      Yes
+                                    </p>
+                                  </div>
+                                </label>
+                                <label className='inline-flex cursor-pointer items-center'>
+                                  <RadioButton id='second' />
+                                  <div className='ml-3'>
+                                    <p className='text-sm pt-[2px] mt-0 mr-4 mb-0 ml-0'>
+                                      No
+                                    </p>
+                                  </div>
+                                </label>
+                              </div>
+                            </div>
+                            <div>
+                              <div className='text-sm mb-2'>
+                                <label
+                                  className='text-[rgb(25,25,25)] leading-[20px] m-0'
+                                  id='marketting'
+                                  htmlFor='marketting'
+                                >
+                                  Enrich my data with select third parties for
+                                  more relevant content.
+                                </label>
+                                <a
+                                  id='tailor_to_needs_agreed'
+                                  href='/privacy-policy/'
+                                  target='_blank'
+                                  rel='noopener'
+                                  class='bg-white no-underline text-[rgb(94,94,94)]'
+                                >
+                                  {" "}
+                                  See Privacy Policy
+                                </a>
+                              </div>
+
+                              {/* Radio container */}
+                              <div className='flex items-center mt-0 mb-3 mr-0 ml-0'>
+                                {/* label insdie a empty div */}
+                                <label className='inline-flex cursor-pointer items-center'>
+                                  <RadioButton id='third' />
+                                  <div className='ml-3'>
+                                    <p className='text-sm pt-[2px] mt-0 mr-4 mb-0 ml-0'>
+                                      Yes
+                                    </p>
+                                  </div>
+                                </label>
+                                <label className='inline-flex cursor-pointer items-center'>
+                                  <RadioButton id='third' />
+                                  <div className='ml-3'>
+                                    <p className='text-sm pt-[2px] mt-0 mr-4 mb-0 ml-0'>
+                                      No
+                                    </p>
+                                  </div>
+                                </label>
+                              </div>
+                            </div>
+                            <p className='text-sm m-0 text-[rgb(127,127,127)]'>
+                              You can update your preferences in your Profile at
+                              any time
+                            </p>
                           </div>
                         </div>
                       )}
