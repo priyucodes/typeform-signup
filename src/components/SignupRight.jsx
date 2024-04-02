@@ -26,9 +26,10 @@ const SignupRight = () => {
 
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
   const [isAgreementChecked, setIsAgreementChecked] = useState(false);
-  const [seeOptions, setSeeOptions] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const [language, setLanguage] = useState(languages[0]);
+
+  const [showOptions, setShowOptions] = useState(false);
   const submitForm = e => {
     e.preventDefault();
     if (!email) {
@@ -63,10 +64,10 @@ const SignupRight = () => {
           <div className='leading-[0] relative'>
             <div
               role='menu'
-              className={`bg-white rounded-lg shadow-[rgba(25,25,25,0.12)_0px_2px_5px_0.5px] py-2 px-0 absolute z-[1]  scale-[0.85] origin-[left_bottom] will-change-[transform,opacity] flex flex-col  top-[2rem] anim ${
+              className={`bg-white rounded-lg shadow-[rgba(25,25,25,0.12)_0px_2px_5px_0.5px] py-2 px-0 absolute z-[1]  origin-[left_bottom] will-change-[transform,opacity] flex flex-col  top-[2rem] anim ${
                 showDropdown
                   ? "visible opacity-100 scale-100 pointer-events-auto"
-                  : "invisible opacity-0 pointer-events-none"
+                  : "invisible opacity-0 pointer-events-none  scale-[0.85]"
               }`}
             >
               {languages.map((lang, index) => {
@@ -139,15 +140,15 @@ const SignupRight = () => {
         </div>
 
         {/* actual header */}
-        <div className='flex items-center align-middle text-[#3d3d3c] col-[second]  justify-end py-2 px-6'>
+        <div className='flex items-center align-middle text-[#3d3d3c] col-[second]  justify-end py-2 px-6 xsMax:justify-stretch'>
           <p className='text-[14px] mt-0 mb-0 ml-0 mr-2'>
             Already have an account?
           </p>
-          <div className='xs:w-auto md:gap-2 inline-flex flex-col items-stretch gap-4 bg-transparent min-w-16 max-w-full w-full'>
+          <div className='xs:w-auto md:gap-2 inline-flex flex-col items-stretch gap-4 bg-transparent min-w-16 max-w-full w-full xsMax:w-full xsMax:flex-1'>
             <a
               href='https://admin.typeform.com/login'
               className='
-              inline-block cursor-pointer text-center font-medium text-xs leading-[1.5] text-[#191919] py-[3px] px-[10px] rounded-[6px] border-[1px] border-[#191919] border-solid
+              inline-block cursor-pointer text-center font-medium text-xs leading-[1.5] text-[#191919] py-[3px] px-[10px] rounded-[6px] border-[1px] border-[#191919] border-solid 
             '
             >
               Log in
@@ -288,7 +289,7 @@ const SignupRight = () => {
                     <div className='pl-[30px] pb-[15px] pt-2'>
                       <div
                         onClick={() => {
-                          setSeeOptions(!seeOptions);
+                          setShowOptions(!showOptions);
                         }}
                         className='items-center cursor-pointer flex text-sm justify-between leading-[32px] m-0'
                       >
@@ -297,12 +298,29 @@ const SignupRight = () => {
                         </p>
                         <span
                           className={`transition-all ${
-                            !seeOptions ? "rotate-180" : "rotate-0"
+                            !showOptions ? "rotate-180" : "rotate-0"
                           }`}
                         >
                           <img src={blackChevron} alt='chevron' />
                         </span>
                       </div>
+
+                      {/* Optiosn */}
+                      {showOptions && (
+                        <div className='max-h-[306px] hidden transition-[max-height] duration-200 delay-0'>
+                          <div className='overflow-auto'>
+                            {/* Toggle Items */}
+                            <div>
+                              <div className='text-sm mb-2'>
+                                <label
+                                  id='marketting'
+                                  htmlFor='marketting'
+                                ></label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
 
